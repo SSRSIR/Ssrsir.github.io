@@ -83,36 +83,37 @@
     form button:hover {
       background-color: #1565c0;
     }
-   .popup {
-  display: none;
-  position: fixed;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.9);
-  background: #e8f5e9;
-  padding: 50px; /* Increased from 30px */
-  border-radius: 16px;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
-  text-align: center;
-  animation: popupScale 0.5s ease forwards;
-  z-index: 1000;
-  width: 400px; /* Set a fixed width */
-  max-width: 90%;
-}
+    .popup {
+      display: none;
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: #e8f5e9;
+      padding: 50px;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      animation: popupScale 0.5s ease forwards;
+      z-index: 1000;
+      width: 400px;
+      max-width: 90%;
+    }
 
-.popup img {
-  width: 70px; /* Bigger tick image */
-  margin-bottom: 20px;
-}
+    .popup img {
+      width: 70px;
+      margin-bottom: 20px;
+    }
 
-.popup h3 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
+    .popup h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
 
-.popup p {
-  font-size: 1.1rem;
-}
+    .popup p {
+      font-size: 1.1rem;
+    }
+
     .social {
       text-align: center;
       margin: 40px 20px;
@@ -230,32 +231,32 @@
     <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" />
   </a>
 
-<script>
-  document.getElementById('queryForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+  <script>
+    document.getElementById('queryForm').addEventListener('submit', function(e) {
+      e.preventDefault();
 
-    // Show popup animation immediately
-    document.getElementById('popup').style.display = 'block';
+      document.getElementById('popup').style.display = 'block';
 
-    const data = new FormData(this);
-    const message = `New SSR Query:\n\nName: ${data.get('name')}\nContact: ${data.get('contact')}\nEmail: ${data.get('email')}\nQuestion: ${data.get('question')}\nFeedback: ${data.get('feedback') || 'None'}`;
+      const data = new FormData(this);
+      const message = `New SSR Query:\n\nName: ${data.get('name')}\nContact: ${data.get('contact')}\nEmail: ${data.get('email')}\nQuestion: ${data.get('question')}\nFeedback: ${data.get('feedback') || 'None'}`;
 
-    // Replace YOUR_BOT_TOKEN and YOUR_CHAT_ID
-    fetch(`https://api.telegram.org/botYOUR_BOT_TOKEN/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: 'YOUR_CHAT_ID',
-        text: message
+      fetch('https://api.telegram.org/bot7960542035:AAGb3-iMgSYl7GmY11KVFwXNjDPZHL43IG8/sendMessage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: '7034227141',
+          text: message
+        })
       })
-    }).then(res => {
-      // Reload after 4 seconds no matter what
-      setTimeout(() => location.reload(), 4000);
-    }).catch(err => {
-      // Still show popup and reload in case of error
-      setTimeout(() => location.reload(), 4000);
+      .then(res => {
+        console.log("Message sent to Telegram");
+        setTimeout(() => location.reload(), 4000);
+      })
+      .catch(err => {
+        console.error("Error sending message:", err);
+        setTimeout(() => location.reload(), 4000);
+      });
     });
-  });
-</script>
+  </script>
 </body>
 </html>
